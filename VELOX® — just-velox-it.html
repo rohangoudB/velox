@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VELOX® — just-velox-it</title>
+<meta name="description" content="VELOX is a growth studio: websites, AI automation and marketing, run by one team. Built to move. Made to grow.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f0f0f0;--bg2:#e6e6e6;--fg:#0c0c0c;--mut:#6b6b6b;--line:rgba(12,12,12,.16);--ac:#1e40ff;--card:#fff;
+--f:'Inter Tight',system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;--g:clamp(1.1rem,3.4vw,3.2rem)}
+@media(prefers-color-scheme:dark){:root:not([data-t="l"]){--bg:#0e0e0e;--bg2:#171717;--fg:#f0f0f0;--mut:#9a9a9a;--line:rgba(240,240,240,.18);--card:#181818;--ac:#4d6bff}}
+*{box-sizing:border-box}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 clamp(15px,.4vw + 14px,17px)/1.55 var(--f);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body.lock{overflow:hidden}
+a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
+h1,h2,h3,p{margin:0;font-weight:inherit}
+::selection{background:var(--ac);color:#fff}
+:focus-visible{outline:2px solid var(--ac);outline-offset:3px}
+.w{padding:0 var(--g);max-width:1600px;margin:0 auto}
+.sm{font-size:.82rem;color:var(--mut);letter-spacing:.01em}
+.rv{opacity:0;transform:translateY(40px);transition:opacity .9s,transform 1s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+hr{border:0;border-top:1px solid var(--line);margin:0}
+.lk{position:relative;display:inline-flex;gap:.5rem;align-items:center;font-weight:500;padding-bottom:3px}
+.lk::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;transform-origin:right;transition:transform .45s cubic-bezier(.76,0,.24,1)}
+.lk:hover::after{transform:scaleX(0)}
+.pill{display:inline-flex;align-items:center;gap:.7rem;padding:.95rem 1.7rem;border-radius:99px;border:1px solid var(--fg);font-weight:500;transition:background .3s,color .3s,border-color .3s;position:relative;overflow:hidden}
+.pill:hover{background:var(--fg);color:var(--bg)}
+.pill.s{background:var(--fg);color:var(--bg)}.pill.s:hover{background:var(--ac);border-color:var(--ac);color:#fff}
+.pill.wa:hover{background:#1faa52;border-color:#1faa52;color:#fff}
+/* intro */
+#intro{position:fixed;inset:0;z-index:999;background:#0b0b0b;color:#f0f0f0;display:grid;place-items:center;text-align:center;overflow:hidden;transition:transform 1s cubic-bezier(.76,0,.24,1)}
+#intro.out{transform:translateY(-100%)}#intro.gone{display:none}
+.i-in{padding:0 1rem;width:100%}
+.i-def{color:#a8a8a8;min-height:3.4em;font-size:clamp(.95rem,2.2vw,1.35rem);opacity:0;transition:opacity .6s}
+.i-def b{display:block;color:#f0f0f0;font-weight:500;font-size:1.5em;letter-spacing:.02em}
+.i-w{display:flex;justify-content:center;font-weight:500;font-size:clamp(4rem,22vw,17rem);line-height:.86;letter-spacing:-.06em;margin:.15em 0;overflow:hidden;padding-bottom:.06em}
+.i-w span{display:inline-block;transform:translateY(105%);transition:transform 1s cubic-bezier(.16,1,.3,1)}
+.i-w span.on{transform:none}
+.i-w sup{font-size:.22em;align-self:flex-start;margin-top:.5em;letter-spacing:0;color:var(--ac);opacity:0;transition:opacity .6s .3s}
+.i-w.f sup{opacity:1}
+.i-v{height:1.6em;overflow:hidden;font-size:clamp(1.1rem,2.8vw,1.8rem);font-weight:400}
+.i-v span{display:block}
+.i-tag{margin-top:1rem;font-size:clamp(.85rem,2vw,1.15rem);letter-spacing:.22em;text-transform:lowercase;color:var(--ac);opacity:0;transition:opacity .7s}
+.i-bar{position:absolute;left:0;bottom:0;height:2px;background:var(--ac);width:0;animation:bar 10.3s linear forwards}
+@keyframes bar{to{width:100%}}
+#skip{position:absolute;right:var(--g);bottom:1.6rem;font-size:.8rem;color:#a8a8a8;border-bottom:1px solid #444;padding:.3rem 0}
+#skip:hover{color:#fff}
+/* header */
+header{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;justify-content:space-between;align-items:center;padding:calc(1rem + env(safe-area-inset-top,0px)) var(--g) 1rem;background:var(--bg);border-bottom:1px solid transparent;transition:border-color .3s}
+header.st{border-color:var(--line)}
+.logo{font-weight:600;font-size:1.25rem;letter-spacing:-.04em}.logo sup{font-size:.5em;color:var(--ac)}
+header nav{display:none;gap:2rem;font-size:.95rem}
+header nav a{display:inline-flex;gap:.3rem}header nav a sup{font-size:.62em;color:var(--mut)}
+header nav a:hover{color:var(--ac)}
+@media(min-width:900px){header nav{display:flex}#mb{display:none}}
+#mb{font-weight:500}
+#menu{position:fixed;inset:0;z-index:55;background:var(--bg);padding:6rem var(--g) 2rem;display:flex;flex-direction:column;justify-content:space-between;transform:translateY(-100%);transition:transform .7s cubic-bezier(.76,0,.24,1)}
+#menu.on{transform:none}
+#menu a{display:block;font-size:clamp(2.2rem,11vw,4rem);font-weight:500;letter-spacing:-.05em;line-height:1.1;padding:.2rem 0}
+/* hero */
+.hero{padding:9rem 0 3rem;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end}
+.hero h1{font-size:clamp(.95rem,1.5vw,1.2rem);max-width:30ch;font-weight:500;margin-bottom:clamp(2rem,6vh,4rem)}
+.hero h2{font-size:clamp(3.2rem,12.6vw,12.4rem);font-weight:500;letter-spacing:-.065em;line-height:.88}
+.hero h2 .l{display:block;overflow:hidden;padding-bottom:.08em}
+.hero h2 .l span{display:inline-block;transform:translateY(108%);transition:transform 1.2s cubic-bezier(.16,1,.3,1)}
+body.ready .hero h2 .l span{transform:none}body.ready .hero h2 .l:nth-child(2) span{transition-delay:.12s}
+.hero h2 em{font-style:normal;color:var(--ac)}
+.hr{display:flex;flex-wrap:wrap;gap:1.4rem 2rem;justify-content:space-between;align-items:flex-end;margin-top:clamp(2rem,5vh,3.4rem);padding-top:1.4rem;border-top:1px solid var(--line)}
+.hr .cta{display:flex;flex-wrap:wrap;gap:.7rem}
+.hr p{max-width:40ch;color:var(--mut)}
+/* marquee */
+.mq{overflow:hidden;border-block:1px solid var(--line);padding:1rem 0}
+.mq div{display:flex;width:max-content;animation:mq 40s linear infinite}
+.mq span{padding-right:2rem;font-size:clamp(1.1rem,2.2vw,1.7rem);font-weight:500;letter-spacing:-.03em;white-space:nowrap}
+.mq span:nth-child(even){color:var(--ac)}
+@keyframes mq{to{transform:translateX(-50%)}}
+.sec{padding:clamp(4rem,10vh,8rem) 0}
+.sh{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-bottom:clamp(1.6rem,4vh,3rem)}
+.sh h2{font-size:clamp(1.8rem,4.6vw,4rem);font-weight:500;letter-spacing:-.05em;line-height:1}
+/* featured slider */
+.sl{display:flex;gap:clamp(.8rem,1.6vw,1.4rem);overflow-x:auto;scroll-snap-type:x mandatory;padding:0 var(--g) 1rem;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.sl::-webkit-scrollbar{display:none}
+.sc{flex:none;width:min(82vw,760px);scroll-snap-align:start;cursor:pointer}
+.sv{aspect-ratio:4/3;border-radius:6px;overflow:hidden;position:relative}
+.sv svg{width:100%;height:100%;display:block;transition:transform 1s cubic-bezier(.16,1,.3,1)}
+.sc:hover .sv svg{transform:scale(1.05)}
+.sc .ct{display:flex;flex-wrap:wrap;gap:.2rem .6rem;margin-top:1rem;font-size:.85rem;color:var(--mut)}
+.sc .ct i{font-style:normal}
+.sc h3{font-size:clamp(1.5rem,3vw,2.4rem);font-weight:500;letter-spacing:-.045em;margin-top:.2rem}
+.sn{display:flex;justify-content:space-between;padding:0 var(--g);margin-top:.6rem}
+.sn button{border:1px solid var(--line);border-radius:50%;width:48px;height:48px;font-size:1.2rem;transition:background .3s,color .3s}
+.sn button:hover{background:var(--fg);color:var(--bg)}
+/* about */
+.ab{display:grid;gap:2rem}
+@media(min-width:900px){.ab{grid-template-columns:1fr 1.6fr;gap:4rem}}
+.ab h3{font-size:clamp(1.5rem,3.2vw,2.8rem);font-weight:500;letter-spacing:-.045em;line-height:1.08}
+.ab p{color:var(--mut);margin:1.4rem 0 2rem;max-width:56ch}
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:3rem;padding-top:1.6rem;border-top:1px solid var(--line)}
+.nums b{display:block;font-size:clamp(2rem,5vw,4rem);font-weight:500;letter-spacing:-.06em;line-height:1}
+/* services list */
+.sv-r{display:grid;grid-template-columns:3rem 1fr;gap:.4rem 1rem;padding:clamp(1.4rem,3vw,2.2rem) 0;border-top:1px solid var(--line);position:relative;transition:padding .45s cubic-bezier(.16,1,.3,1)}
+.sv-r:last-child{border-bottom:1px solid var(--line)}
+@media(min-width:900px){.sv-r{grid-template-columns:5rem 1.2fr 1fr}.sv-r:hover{padding-left:1.4rem}.sv-r:hover h3{color:var(--ac)}}
+.sv-r h3{font-size:clamp(1.7rem,4.4vw,3.8rem);font-weight:500;letter-spacing:-.055em;line-height:1;transition:color .3s}
+.sv-r p{color:var(--mut);max-width:44ch;grid-column:2/-1}
+@media(min-width:900px){.sv-r p{grid-column:auto;align-self:center}}
+.sv-r ul{grid-column:2/-1;list-style:none;padding:0;margin:.6rem 0 0;display:flex;flex-wrap:wrap;gap:.4rem}
+.sv-r li{font-size:.8rem;border:1px solid var(--line);border-radius:99px;padding:.25rem .75rem}
+@media(min-width:900px){.sv-r ul{grid-column:2/-1}}
+/* clients */
+.cl{display:grid;gap:1.2rem;padding:clamp(1.6rem,3.4vw,2.6rem) 0;border-top:1px solid var(--line)}
+@media(min-width:900px){.cl{grid-template-columns:1fr 1.5fr;gap:4rem}}
+.cl b{font-size:clamp(1.4rem,2.6vw,2.2rem);font-weight:500;letter-spacing:-.045em}
+.cl p{color:var(--mut);max-width:60ch;margin-bottom:1.1rem}
+/* accordion */
+.ac{border-top:1px solid var(--line)}
+.ai{border-bottom:1px solid var(--line)}
+.aq{width:100%;display:grid;grid-template-columns:2.4rem 1fr auto;gap:1rem;align-items:baseline;text-align:left;padding:1.3rem 0}
+.aq h3{font-size:clamp(1.3rem,2.6vw,2.2rem);font-weight:500;letter-spacing:-.045em;transition:color .3s}
+.aq:hover h3{color:var(--ac)}
+.aq .tg{display:none;color:var(--mut);font-size:.85rem}
+@media(min-width:760px){.aq{grid-template-columns:3rem 1fr 1fr auto}.aq .tg{display:block}}
+.aq .mo{font-size:.85rem;font-weight:500;white-space:nowrap}
+.ap{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s cubic-bezier(.76,0,.24,1)}
+.ai.on .ap{grid-template-rows:1fr}
+.ap>div{overflow:hidden}
+.ap p{padding:0 0 1.6rem 3rem;color:var(--mut);max-width:70ch}
+/* capabilities cols */
+.cc{display:grid;gap:2rem;grid-template-columns:1fr}
+@media(min-width:760px){.cc{grid-template-columns:repeat(3,1fr)}}
+.cc h3{font-weight:500;font-size:1.15rem;padding-bottom:.8rem;border-bottom:1px solid var(--line);margin-bottom:.9rem}
+.cc ul{list-style:none;padding:0;margin:0;color:var(--mut)}.cc li{padding:.22rem 0}
+/* footer */
+.ft{background:var(--fg);color:var(--bg);padding:clamp(4rem,10vh,8rem) 0 2rem}
+.ft h2{font-size:clamp(2.8rem,10.4vw,10rem);font-weight:500;letter-spacing:-.065em;line-height:.92}
+.ft h2 em{font-style:normal;color:var(--ac)}
+.ft .cta{display:flex;flex-wrap:wrap;gap:.7rem;margin:2.4rem 0 clamp(3rem,8vh,5rem)}
+.ft .pill{border-color:var(--bg);color:var(--bg)}.ft .pill:hover{background:var(--bg);color:var(--fg)}
+.ft .pill.s{background:var(--bg);color:var(--fg)}.ft .pill.s:hover{background:var(--ac);border-color:var(--ac);color:#fff}
+.fg{display:grid;gap:2rem;grid-template-columns:1fr 1fr;padding:2rem 0;border-top:1px solid rgba(128,128,128,.35)}
+@media(min-width:800px){.fg{grid-template-columns:repeat(4,1fr)}}
+.fg .sm{color:#8a8a8a;margin-bottom:.5rem;display:block}
+.fg a:hover{color:var(--ac)}
+.fb{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;padding-top:1.4rem;border-top:1px solid rgba(128,128,128,.35);font-size:.85rem;color:#8a8a8a}
+.fb button:hover,.fb a:hover{color:var(--ac)}
+/* modal */
+#md{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.55);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:1rem}
+#md.on{display:flex}
+.bx{position:relative;width:100%;max-width:520px;max-height:92vh;overflow:auto;background:var(--bg);color:var(--fg);border-radius:10px;padding:clamp(1.3rem,3.5vw,2.2rem);animation:up .5s cubic-bezier(.16,1,.3,1)}
+@keyframes up{from{opacity:0;transform:translateY(24px)}}
+.bx h3{font-size:1.9rem;font-weight:500;letter-spacing:-.05em}
+.tabs{display:flex;border-bottom:1px solid var(--line);margin:1.1rem 0}
+.tabs button{flex:1;padding:.7rem 0;font-weight:500;color:var(--mut);border-bottom:2px solid transparent;margin-bottom:-1px}
+.tabs button.on{color:var(--fg);border-color:var(--ac)}
+.bx label{display:block;font-size:.78rem;color:var(--mut);margin:.9rem 0 .3rem}
+.bx input,.bx textarea{width:100%;font:inherit;color:var(--fg);background:transparent;border:0;border-bottom:1px solid var(--line);padding:.55rem 0;border-radius:0}
+.bx input:focus,.bx textarea:focus{outline:0;border-color:var(--ac)}
+.bx textarea{min-height:84px;resize:vertical}
+.bx .pill{width:100%;justify-content:center;margin-top:1.3rem}
+.pn{display:none}.pn.on{display:block}
+.dis{opacity:.4;cursor:not-allowed;margin-top:.6rem!important}.dis:hover{background:transparent!important;color:var(--fg)!important}
+.er{color:#e11d48;font-size:.8rem;min-height:1em;margin-top:.5rem}
+.x{position:absolute;right:1rem;top:1rem;width:38px;height:38px;border:1px solid var(--line);border-radius:50%}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body class="lock">
+
+<div id="intro" role="status" aria-label="VELOX intro">
+  <div class="i-in">
+    <div class="i-def" id="idef"><b>vē·lōx</b><span id="idt"></span></div>
+    <div class="i-w" id="iw" aria-label="VELOX"><span>V</span><span>E</span><span>L</span><span>O</span><span>X</span><sup>®</sup></div>
+    <div class="i-v"><span id="iv">&nbsp;</span></div>
+    <div class="i-tag" id="itag">just-velox-it</div>
+  </div>
+  <button id="skip" type="button">Skip intro</button>
+  <div class="i-bar"></div>
+</div>
+
+<header id="hd">
+  <a class="logo" href="#top" aria-label="VELOX home">VELOX<sup>®</sup></a>
+  <nav aria-label="Main"><a href="#work">Work<sup>04</sup></a><a href="#services">Services<sup>04</sup></a><a href="#cases">Case studies<sup>03</sup></a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+  <button id="mb" type="button" aria-expanded="false" aria-controls="menu">Menu +</button>
+</header>
+<div id="menu" aria-hidden="true">
+  <nav><a href="#work">Work</a><a href="#services">Services</a><a href="#cases">Case studies</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+  <p class="sm">hello@velox.agency</p>
+</div>
+
+<main id="top">
+<section class="hero"><div class="w">
+  <h1>A growth studio for modern brands &mdash; websites, AI automation and marketing under one roof.</h1>
+  <h2><span class="l"><span>Built to move</span></span><span class="l"><span>Made to <em>grow</em></span></span></h2>
+  <div class="hr">
+    <p>We build your site, automate the repetitive work, and bring you customers. One team, one plan, no handoffs.</p>
+    <div class="cta"><a class="pill s wa" href="#" data-wa="">WhatsApp us &nearr;</a><button class="pill" type="button" data-open="email">Email your brief</button></div>
+  </div>
+</div></section>
+
+<div class="mq" aria-hidden="true"><div id="mq"></div></div>
+
+<section class="sec" id="work"><div class="w sh rv"><h2>Featured work</h2><span class="sm">Scroll &rarr;</span></div>
+  <div class="sl" id="sl">
+    <article class="sc rv"><div class="sv"><svg viewBox="0 0 760 570" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="760" height="570" fill="#1e40ff"/><circle cx="560" cy="150" r="190" fill="#0c0c0c"/><path d="M0 470 C160 380 280 520 420 420 S640 330 760 380 V570H0Z" fill="#f0f0f0"/><text x="40" y="110" font-family="Inter Tight,sans-serif" font-size="68" font-weight="500" fill="#f0f0f0" letter-spacing="-3">0.9s</text></svg></div>
+      <div class="ct"><span>Web development</span><i>—</i><span>Ecommerce</span><i>—</i><span>Performance</span></div><h3>Atelier Online</h3></article>
+    <article class="sc rv"><div class="sv"><svg viewBox="0 0 760 570" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="760" height="570" fill="#0c0c0c"/><g fill="none" stroke="#f0f0f0" stroke-width="2"><rect x="70" y="90" width="150" height="70" rx="6"/><rect x="70" y="250" width="150" height="70" rx="6"/><rect x="70" y="410" width="150" height="70" rx="6"/><rect x="540" y="170" width="150" height="70" rx="6"/><rect x="540" y="330" width="150" height="70" rx="6"/></g><circle cx="380" cy="285" r="78" fill="#1e40ff"/><g stroke="#1e40ff" stroke-width="3" fill="none"><path d="M220 125H300L330 240M220 285H302M220 445H300L330 330M458 250L540 205M458 320L540 365"/></g></svg></div>
+      <div class="ct"><span>AI automation</span><i>—</i><span>Workflows</span><i>—</i><span>Strategy</span></div><h3>Northbridge Advisory</h3></article>
+    <article class="sc rv"><div class="sv"><svg viewBox="0 0 760 570" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="760" height="570" fill="#dcdcdc"/><g fill="#0c0c0c"><rect x="70" y="380" width="70" height="120"/><rect x="170" y="330" width="70" height="170"/><rect x="270" y="270" width="70" height="230"/><rect x="370" y="210" width="70" height="290"/><rect x="470" y="150" width="70" height="350"/></g><rect x="570" y="80" width="70" height="420" fill="#1e40ff"/></svg></div>
+      <div class="ct"><span>Paid marketing</span><i>—</i><span>Creators</span><i>—</i><span>Distribution</span></div><h3>Kinfolk Wear</h3></article>
+    <article class="sc rv"><div class="sv"><svg viewBox="0 0 760 570" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="760" height="570" fill="#1a1a1a"/><g fill="#f0f0f0"><rect x="70" y="80" width="620" height="22" rx="11" opacity=".9"/><rect x="70" y="140" width="420" height="22" rx="11" opacity=".5"/><rect x="70" y="200" width="520" height="22" rx="11" opacity=".3"/></g><rect x="70" y="300" width="270" height="190" rx="8" fill="#1e40ff"/><rect x="370" y="300" width="320" height="190" rx="8" fill="none" stroke="#f0f0f0" stroke-width="2"/></svg></div>
+      <div class="ct"><span>Product engineering</span><i>—</i><span>Technical steering</span></div><h3>Helio Portal</h3></article>
+  </div>
+  <div class="sn"><button type="button" id="pv" aria-label="Previous">&larr;</button><button type="button" id="nx" aria-label="Next">&rarr;</button></div>
+</section>
+
+<section class="sec" id="about"><div class="w ab">
+  <p class="sm rv">About</p>
+  <div class="rv"><h3>A small, senior team helping businesses grow faster &mdash; with one plan instead of five vendors.</h3>
+    <p>Most brands hire one company for the site, another for the ads, a freelancer for the automation &mdash; then spend their week chasing all of them. VELOX is the alternative: the people who build your website also wire the AI behind it and sit in the same room as whoever is buying your ads. When the campaign changes, the page changes the same day.</p>
+    <button class="lk" type="button" data-open="email">Talk to us &rarr;</button>
+    <div class="nums"><div><b data-n="0.9" data-d="1">0</b><span class="sm">sec page load</span></div><div><b data-n="14" data-d="0">0</b><span class="sm">days to first release</span></div><div><b data-n="4" data-d="0">0</b><span class="sm">services, one team</span></div></div>
+  </div>
+</div></section>
+
+<section class="sec" id="services" style="padding-top:0"><div class="w">
+  <div class="sh rv"><h2>Services</h2><span class="sm">What we do</span></div>
+  <div class="sv-r rv"><span class="sm">01</span><h3>Marketing</h3><p>Ads, creators, email, WhatsApp and search planned as one system and judged on sales, not likes.</p><ul><li>Paid ads</li><li>Creator campaigns</li><li>Email &amp; WhatsApp</li><li>SEO</li><li>Distribution</li></ul></div>
+  <div class="sv-r rv"><span class="sm">02</span><h3>Websites &amp; apps</h3><p>Fast sites, stores and tools &mdash; built, launched and looked after after launch.</p><ul><li>Web design</li><li>Ecommerce</li><li>Custom apps</li><li>Site operations</li></ul></div>
+  <div class="sv-r rv"><span class="sm">03</span><h3>AI automation</h3><p>Custom AI that does the repetitive work, with a person approving anything important.</p><ul><li>AI assistants</li><li>Workflows</li><li>Data &amp; reports</li><li>CRM automation</li></ul></div>
+  <div class="sv-r rv"><span class="sm">04</span><h3>Technical steering</h3><p>One senior partner who owns the whole plan and gives you one straight answer.</p><ul><li>Roadmap</li><li>Vendor management</li><li>Reporting</li><li>Training</li></ul></div>
+</div></section>
+
+<section class="sec" id="cases" style="padding-top:0"><div class="w">
+  <div class="sh rv"><h2>Case studies</h2><span class="sm">Selected</span></div>
+  <div class="cl rv"><b>Atelier Online</b><div><p>A 12,000-product store moved to a new platform without losing a single Google ranking. Pages now appear in under a second and checkout errors fell by two thirds.</p><button class="lk" type="button" data-open="email">Start something similar &rarr;</button></div></div>
+  <div class="cl rv"><b>Northbridge Advisory</b><div><p>We built an AI back-office for a 40-person team: quotes, follow-ups and reports now draft themselves, and people only approve. About 1,100 hours returned every quarter.</p><button class="lk" type="button" data-open="email">Start something similar &rarr;</button></div></div>
+  <div class="cl rv" style="border-bottom:1px solid var(--line)"><b>Kinfolk Wear</b><div><p>Ad spend grew eightfold while the cost of winning a customer stayed flat, thanks to weekly creative testing, creator partnerships and fixed tracking.</p><button class="lk" type="button" data-open="email">Start something similar &rarr;</button></div></div>
+</div></section>
+
+<section class="sec" style="padding-top:0"><div class="w">
+  <div class="sh rv"><h2>How we help</h2><span class="sm">Pick yours</span></div>
+  <div class="ac rv" id="ac">
+    <div class="ai on"><button class="aq" type="button" aria-expanded="true"><span class="sm">01</span><h3>More customers</h3><span class="tg">Marketing</span><span class="mo">Less &mdash;</span></button><div class="ap"><div><p>You don&rsquo;t need more noise, you need the right people seeing the right thing. We build one plan across ads, creators, email and search, then track every rupee back to a sale so you know what is working.</p></div></div></div>
+    <div class="ai"><button class="aq" type="button" aria-expanded="false"><span class="sm">02</span><h3>A faster website</h3><span class="tg">Web &mdash; Engineering</span><span class="mo">More +</span></button><div class="ap"><div><p>A slow page loses visitors before they read a word. We rebuild or repair your site so it loads in about a second, works on any phone and turns visitors into enquiries &mdash; without losing the rankings you already have.</p></div></div></div>
+    <div class="ai"><button class="aq" type="button" aria-expanded="false"><span class="sm">03</span><h3>Less busywork</h3><span class="tg">AI &mdash; Automation</span><span class="mo">More +</span></button><div class="ap"><div><p>If someone copies data between systems or writes the same reply every day, software should do it. We build custom AI that handles the dull majority inside the tools your team already uses.</p></div></div></div>
+    <div class="ai"><button class="aq" type="button" aria-expanded="false"><span class="sm">04</span><h3>One clear answer</h3><span class="tg">Steering &mdash; Strategy</span><span class="mo">More +</span></button><div class="ap"><div><p>Stop being the project manager between a developer, a designer and an ad agency. We take the whole picture, run it, and report to you in plain language every month.</p></div></div></div>
+  </div>
+</div></section>
+
+<section class="sec" style="padding-top:0"><div class="w">
+  <div class="sh rv"><h2>Capabilities</h2></div>
+  <div class="cc rv">
+    <div><h3>Marketing</h3><ul><li>Paid search &amp; social</li><li>Creator integration</li><li>Email &amp; WhatsApp</li><li>Organic search</li><li>Multi-channel distribution</li></ul></div>
+    <div><h3>Engineering</h3><ul><li>High-performance web</li><li>Ecommerce builds</li><li>Product engineering</li><li>Site operations</li><li>Security &amp; uptime</li></ul></div>
+    <div><h3>Intelligence</h3><ul><li>Enterprise AI automation</li><li>Intelligent workflows</li><li>Custom assistants</li><li>Data pipelines</li><li>End-to-end technical steering</li></ul></div>
+  </div>
+</div></section>
+</main>
+
+<footer class="ft" id="contact"><div class="w">
+  <p class="sm" style="color:#8a8a8a;margin-bottom:1rem">We would love to hear from you</p>
+  <h2>Let&rsquo;s work<br><em>together.</em></h2>
+  <div class="cta"><a class="pill s wa" href="#" data-wa="">WhatsApp us &nearr;</a><button class="pill" type="button" data-open="email">Email your brief</button><button class="pill" type="button" data-open="acct">Create account / Sign in</button></div>
+  <div class="fg">
+    <div><span class="sm">Business enquiries</span><a href="mailto:hello@velox.agency">hello@velox.agency</a></div>
+    <div><span class="sm">WhatsApp</span><a href="#" data-wa="">Message us</a></div>
+    <div><span class="sm">Based in</span>India &mdash; working worldwide</div>
+    <div><span class="sm">Business hours</span>Mon &ndash; Fri, 09:00 &ndash; 18:00 IST</div>
+  </div>
+  <div class="fb"><span>VELOX&reg; &copy; <span id="yr">2026</span> &mdash; just-velox-it</span><span><button type="button" id="rp">Replay intro</button> &nbsp;&middot;&nbsp; <a href="#top">Back to top &uarr;</a></span></div>
+</div></footer>
+
+<div id="md" role="dialog" aria-modal="true" aria-label="Get in touch"><div class="bx">
+  <button class="x" type="button" id="mx" aria-label="Close">&times;</button>
+  <h3>Get in touch</h3>
+  <div class="tabs"><button type="button" data-t="wa" class="on">WhatsApp</button><button type="button" data-t="email">Email</button><button type="button" data-t="acct">Account</button></div>
+  <div class="pn on" data-p="wa"><label for="wm">Your message</label><textarea id="wm">Hi VELOX, I&rsquo;d like to talk about my business.</textarea><a class="pill s wa" href="#" id="wgo" target="_blank" rel="noopener">Open WhatsApp &nearr;</a></div>
+  <div class="pn" data-p="email"><form id="ef" novalidate>
+    <label for="en">Name</label><input id="en" autocomplete="name">
+    <label for="ee">Email</label><input id="ee" type="email" autocomplete="email">
+    <label for="ep">Phone / WhatsApp</label><input id="ep" type="tel" autocomplete="tel">
+    <label for="em">What do you need?</label><textarea id="em"></textarea>
+    <div class="er" id="eer"></div><button class="pill s" type="submit">Send via email</button></form></div>
+  <div class="pn" data-p="acct">
+    <button class="pill dis" type="button" disabled>Continue with Google</button>
+    <button class="pill dis" type="button" disabled>Sign in with mobile OTP</button>
+    <p class="sm" style="margin:1rem 0 0">One-tap Google and OTP sign-in switch on once our sign-in service is connected. Until then, create your client profile &mdash; we&rsquo;ll confirm it with you on WhatsApp or email.</p>
+    <form id="af" novalidate>
+      <label for="an">Full name</label><input id="an" autocomplete="name">
+      <label for="ae">Email</label><input id="ae" type="email" autocomplete="email">
+      <label for="ap">Mobile number</label><input id="ap" type="tel" autocomplete="tel">
+      <label for="ac2">Company</label><input id="ac2" autocomplete="organization">
+      <div class="er" id="aer"></div><button class="pill s" type="submit">Create my profile</button>
+      <p class="sm" style="margin-top:.8rem">No password needed. Details are sent to us by email; nothing is stored on this page.</p></form></div>
+</div></div>
+
+<script>
+(function(){
+"use strict";
+var WA="910000000000",MAIL="hello@velox.agency";
+var $=function(s,r){return(r||document).querySelector(s)},$$=function(s,r){return[].slice.call((r||document).querySelectorAll(s))};
+var reduced=matchMedia("(prefers-reduced-motion: reduce)").matches,T=[],done=false;
+function at(ms,f){T.push(setTimeout(f,ms))}
+function wa(t){return"https://wa.me/"+WA+"?text="+encodeURIComponent(t)}
+$$("[data-wa]").forEach(function(a){a.href=wa("Hi VELOX, I found you online and would like to talk.");a.target="_blank";a.rel="noopener"});
+$("#yr").textContent=new Date().getFullYear();
+var W=["Websites","AI automation","Paid marketing","Creator integration","Technical steering","Just-velox-it"],h="";
+for(var i=0;i<4;i++)W.forEach(function(w){h+="<span>"+w+" &mdash;</span>"});
+$("#mq").innerHTML=h;
+/* intro ~10.4s */
+var intro=$("#intro");
+function reveals(){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{threshold:.1});$$(".rv").forEach(function(el){io.observe(el)})}
+function counters(){$$("[data-n]").forEach(function(el){var t=+el.dataset.n,d=+el.dataset.d,s=null;if(reduced){el.textContent=t.toFixed(d);return}(function f(n){if(!s)s=n;var p=Math.min(1,(n-s)/1400);el.textContent=(t*(1-Math.pow(1-p,3))).toFixed(d);if(p<1)requestAnimationFrame(f)})(performance.now())})}
+var started=false;
+function open(){if(done)return;done=true;T.forEach(clearTimeout);intro.classList.add("out");document.body.classList.remove("lock");document.body.classList.add("ready");if(!started){started=true;reveals();at(500,counters)}at(1050,function(){intro.classList.add("gone")})}
+function type(el,txt,sp){var i=0;(function k(){el.textContent=txt.slice(0,++i);if(i<txt.length)at(sp,k)})()}
+function run(){
+ done=false;intro.className="";document.body.classList.add("lock");document.body.classList.remove("ready");
+ var b=$(".i-bar");b.style.animation="none";void b.offsetWidth;b.style.animation="";
+ $$("#iw span").forEach(function(s){s.classList.remove("on")});$("#iw").classList.remove("f");$("#idt").textContent="";$("#idef").style.opacity=0;$("#itag").style.opacity=0;$("#iv").innerHTML="&nbsp;";
+ if(reduced){$$("#iw span").forEach(function(s){s.classList.add("on")});$("#iw").classList.add("f");$("#itag").style.opacity=1;at(1800,open);return}
+ at(300,function(){$("#idef").style.opacity=1;type($("#idt"),"Latin, adjective — swift, rapid, of great speed.",40)});
+ $$("#iw span").forEach(function(s,i){at(3400+i*200,function(){s.classList.add("on")})});
+ at(4600,function(){$("#iw").classList.add("f")});
+ ["We build.","We automate.","We grow your brand."].forEach(function(v,i){at(5400+i*1100,function(){var e=$("#iv");e.style.transition="none";e.style.opacity=0;e.style.transform="translateY(40%)";e.textContent=v;void e.offsetWidth;e.style.transition="all .6s cubic-bezier(.16,1,.3,1)";e.style.opacity=1;e.style.transform="none"})});
+ at(8900,function(){$("#itag").style.opacity=1});
+ at(10300,open)}
+$("#skip").onclick=open;
+$("#rp").onclick=function(){scrollTo(0,0);run()};
+run();
+/* header, menu */
+addEventListener("scroll",function(){$("#hd").classList.toggle("st",scrollY>20)},{passive:true});
+var mb=$("#mb"),mn=$("#menu");
+function menu(on){mn.classList.toggle("on",on);mb.textContent=on?"Close —":"Menu +";mb.setAttribute("aria-expanded",on);mn.setAttribute("aria-hidden",!on);document.body.style.overflow=on?"hidden":""}
+mb.onclick=function(){menu(!mn.classList.contains("on"))};
+$$("#menu a").forEach(function(a){a.onclick=function(){menu(false)}});
+/* slider */
+var sl=$("#sl");function step(d){var c=$(".sc",sl);sl.scrollBy({left:d*(c.offsetWidth+16),behavior:reduced?"auto":"smooth"})}
+$("#nx").onclick=function(){step(1)};$("#pv").onclick=function(){step(-1)};
+/* accordion */
+$("#ac").addEventListener("click",function(e){var q=e.target.closest(".aq");if(!q)return;var it=q.parentNode,on=!it.classList.contains("on");
+ $$(".ai",this).forEach(function(i){i.classList.remove("on");$(".aq",i).setAttribute("aria-expanded","false");$(".mo",i).innerHTML="More +"});
+ if(on){it.classList.add("on");q.setAttribute("aria-expanded","true");$(".mo",it).innerHTML="Less &mdash;"}});
+/* modal */
+var md=$("#md"),last=null;
+function tab(n){$$(".tabs button").forEach(function(b){b.classList.toggle("on",b.dataset.t===n)});$$(".pn").forEach(function(p){p.classList.toggle("on",p.dataset.p===n)})}
+function openM(n){last=document.activeElement;md.classList.add("on");document.body.style.overflow="hidden";tab(n||"wa");$("#wgo").href=wa($("#wm").value);setTimeout(function(){$("#mx").focus()},30)}
+function closeM(){md.classList.remove("on");document.body.style.overflow="";if(last&&last.focus)last.focus()}
+document.addEventListener("click",function(e){var o=e.target.closest("[data-open]");if(o){e.preventDefault();openM(o.dataset.open||"wa")}});
+document.addEventListener("keydown",function(e){if(e.key!=="Escape")return;if(md.classList.contains("on"))closeM();else if(!done)open()});
+$("#mx").onclick=closeM;md.addEventListener("click",function(e){if(e.target===md)closeM()});
+$(".tabs").addEventListener("click",function(e){var b=e.target.closest("button");if(b)tab(b.dataset.t)});
+$("#wm").addEventListener("input",function(){$("#wgo").href=wa(this.value)});
+var ok=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+function mail(s,b){location.href="mailto:"+MAIL+"?subject="+encodeURIComponent(s)+"&body="+encodeURIComponent(b)}
+$("#ef").addEventListener("submit",function(e){e.preventDefault();var n=$("#en").value.trim(),m=$("#ee").value.trim(),p=$("#ep").value.trim(),t=$("#em").value.trim();
+ if(!n||!ok.test(m)||t.length<5){$("#eer").textContent="Please add your name, a valid email and a line about what you need.";return}
+ $("#eer").textContent="";mail("New enquiry — "+n,"Name: "+n+"\nEmail: "+m+"\nPhone: "+(p||"-")+"\n\n"+t)});
+$("#af").addEventListener("submit",function(e){e.preventDefault();var n=$("#an").value.trim(),m=$("#ae").value.trim(),p=$("#ap").value.trim(),c=$("#ac2").value.trim();
+ if(!n||!ok.test(m)||p.replace(/\D/g,"").length<8){$("#aer").textContent="Please add your name, a valid email and a mobile number.";return}
+ $("#aer").textContent="";mail("New client profile — "+n,"Please set up a client profile.\n\nName: "+n+"\nEmail: "+m+"\nMobile: "+p+"\nCompany: "+(c||"-"))});
+})();
+</script>
+</body>
+</html>
